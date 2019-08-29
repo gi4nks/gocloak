@@ -188,10 +188,10 @@ type ExecuteActionsEmail struct {
 
 // Group is a Group
 type Group struct {
-	ID        string        `json:"id,omitempty"`
-	Name      string        `json:"name,omitempty"`
-	Path      string        `json:"path,omitempty"`
-	SubGroups []interface{} `json:"subGroups,omitempty"`
+	ID        string  `json:"id,omitempty"`
+	Name      string  `json:"name,omitempty"`
+	Path      string  `json:"path,omitempty"`
+	SubGroups []Group `json:"subGroups,omitempty"`
 }
 
 // GetGroupsParams represents the optional parameters for getting groups
