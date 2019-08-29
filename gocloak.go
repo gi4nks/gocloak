@@ -154,6 +154,11 @@ type GoCloak interface {
 	// AddRealmRoleComposite adds roles as composite
 	DeleteRealmRoleComposite(token string, realm string, roleName string, roles []Role) error
 
+	// AddRealmRoleToUser adds realm-level role mappings
+	AddClientRoleToUser(token string, realm string, userID string, clientID string, roles []Role) error
+	// DeleteRealmRoleFromUser deletes realm-level role mappings
+	DeleteClientRoleFromUser(token string, realm string, userID string, clientID string, roles []Role) error
+
 	// *** Realm ***
 
 	// GetRealm returns top-level representation of the realm

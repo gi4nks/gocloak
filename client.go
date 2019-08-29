@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Nerzal/gocloak/v3/pkg/jwx"
 	"github.com/dgrijalva/jwt-go"
+	"github.com/gi4nks/gocloak/v3/pkg/jwx"
 	"gopkg.in/resty.v1"
 )
 
@@ -943,6 +943,24 @@ func (client *gocloak) DeleteRealmRoleComposite(token string, realm string, role
 	resp, err := client.getRequestWithBearerAuth(token).
 		SetBody(roles).
 		Delete(client.getAdminRealmURL(realm, "roles", roleName, "composites"))
+
+	return checkForError(resp, err)
+}
+
+// AddRealmRoleToUser adds realm-level role mappings
+func (client *gocloak) AddClientRoleToUser(token string, realm string, userID string, clientID string, roles []Role) error {
+	resp, err := client.getRequestWithBearerAuth(token).
+		SetBody(roles).
+		Post(client.getAdminRealmURL(realm, "users", userID, "role-mappings", "client", clientID))
+
+	return checkForError(resp, err)
+}
+
+// DeleteRealmRoleFromUser deletes realm-level role mappings
+func (client *gocloak) DeleteClientRoleFromUser(token string, realm string, userID string, clientID string, roles []Role) error {
+	resp, err := client.getRequestWithBearerAuth(token).
+		SetBody(roles).
+		Delete(client.getAdminRealmURL(realm, "users", userID, "role-mappings", "client", clientID))
 
 	return checkForError(resp, err)
 }
