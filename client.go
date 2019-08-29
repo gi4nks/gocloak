@@ -965,6 +965,15 @@ func (client *gocloak) DeleteClientRoleFromUser(token string, realm string, user
 	return checkForError(resp, err)
 }
 
+// AddGroupToGroup
+func (client *gocloak) AddGroupToGroup(token string, realm, groupID string, group Group) error {
+	resp, err := client.getRequestWithBearerAuth(token).
+		SetBody(group).
+		Post(client.getAdminRealmURL(realm, "groups", groupID, "children"))
+
+	return checkForError(resp, err)
+}
+
 // -----
 // Realm
 // -----

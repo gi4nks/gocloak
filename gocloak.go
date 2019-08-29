@@ -75,6 +75,9 @@ type GoCloak interface {
 	// DeleteClientScope
 	DeleteClientScope(accessToken string, realm, scopeID string) error
 
+	//AddGroupToGroup
+	AddGroupToGroup(token string, realm, groupID string, group Group) error
+
 	// GetClient returns a client
 	GetClient(accessToken string, realm string, clientID string) (*Client, error)
 	// GetClientsDefaultScopes returns a list of the client's default scopes
