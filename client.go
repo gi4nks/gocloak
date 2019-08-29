@@ -951,7 +951,7 @@ func (client *gocloak) DeleteRealmRoleComposite(token string, realm string, role
 func (client *gocloak) AddClientRoleToUser(token string, realm string, userID string, clientID string, roles []Role) error {
 	resp, err := client.getRequestWithBearerAuth(token).
 		SetBody(roles).
-		Post(client.getAdminRealmURL(realm, "users", userID, "role-mappings", "client", clientID))
+		Post(client.getAdminRealmURL(realm, "users", userID, "role-mappings", "clients", clientID))
 
 	return checkForError(resp, err)
 }
@@ -960,7 +960,7 @@ func (client *gocloak) AddClientRoleToUser(token string, realm string, userID st
 func (client *gocloak) DeleteClientRoleFromUser(token string, realm string, userID string, clientID string, roles []Role) error {
 	resp, err := client.getRequestWithBearerAuth(token).
 		SetBody(roles).
-		Delete(client.getAdminRealmURL(realm, "users", userID, "role-mappings", "client", clientID))
+		Delete(client.getAdminRealmURL(realm, "users", userID, "role-mappings", "clients", clientID))
 
 	return checkForError(resp, err)
 }
