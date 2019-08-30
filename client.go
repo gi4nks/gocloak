@@ -106,6 +106,19 @@ func NewClient(basePath string) GoCloak {
 	return &c
 }
 
+func NewSecureClient(basePath string, pemFilePath string) GoCloak {
+
+	c := gocloak{
+		basePath:    strings.TrimRight(basePath, urlSeparator),
+		certsCache:  make(map[string]*CertResponse),
+		restyClient: resty.New(),
+	}
+	c.restyClient.SetRootCertificate(pemFilePath)
+	c.Config.CertsInvalidateTime = 10 * time.Minute
+
+	return &c
+}
+
 func (client *gocloak) RestyClient() *resty.Client {
 	return client.restyClient
 }
