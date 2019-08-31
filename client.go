@@ -26,13 +26,16 @@ const (
 	urlSeparator  string = "/"
 )
 
-/*
+//*
 var authAdminRealms = makeURL("auth", "admin", "realms")
 var authRealms = makeURL("auth", "realms")
-*/
 
+//*/
+
+/*
 var authAdminRealms = makeURL("admin", "realms")
 var authRealms = makeURL("realms")
+*/
 
 var tokenEndpoint = makeURL("protocol", "openid-connect", "token")
 var logoutEndpoint = makeURL("protocol", "openid-connect", "logout")
